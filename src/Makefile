@@ -30,6 +30,7 @@ clean:
 # The sources for the XPI file. Uses variables defined in the included
 # Makefiles.
 xpi_built := manifest.json \
+             $(wildcard *.js) \
              $(wildcard scripts/*.js)
 
 $(xpi_file): $(xpi_built)

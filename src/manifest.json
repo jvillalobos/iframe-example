@@ -19,5 +19,9 @@
       "all_frames": true,
       "js": [ "scripts/flatten.js" ]
     }
-  ]
+  ],
+
+  "background": {
+    "scripts": ["background.js"]
+  }
 }

@@ -9,3 +9,7 @@ body {
 body.main {
   background-color: #ffffff;
 }
+
+div.container {
+  border: solid medium red;
+}

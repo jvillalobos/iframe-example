@@ -16,4 +16,32 @@
 
 "use strict";
 
-console.log(window == window.top);
+if (window != window.top) {
+  // frame.
+  // send message to background script.
+  browser.runtime.sendMessage(
+    { "host" : window.location.hostname,
+      "body" : document.body.innerHTML });
+} else {
+  // top window.
+  browser.runtime.onMessage.addListener(function(message, sender) {
+    if (sender.id == "iframe-example@xulforge.com") {
+      let frameId = ((message.host == "xulforge.com") ? "frame1" : "frame2");
+      let frame = document.getElementById(frameId);
+
+      if (frame) {
+        let container = document.createElement("div");
+
+        // XXX: message.body should be sanitized before injecting!
+        container.setAttribute("class", "container");
+        container.innerHTML = message.body;
+        // inject content from frame.
+        frame.parentNode.insertBefore(container, frame);
+        // remove frame.
+        frame.parentNode.removeChild(frame);
+      }
+    }
+  });
+
+  browser.runtime.sendMessage({ "loaded" : true });
+}
