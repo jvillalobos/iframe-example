@@ -1,0 +1,23 @@
+{
+  "manifest_version": 2,
+  "name": "iframe flattener example",
+  "version": "1.0",
+
+  "description": "Sample content script that merges iframes into the main doc.",
+  "homepage_url": "https://github.com/jvillalobos/iframe-example",
+
+  "applications": {
+    "gecko": {
+      "id": "iframe-example@xulforge.com",
+      "strict_min_version": "45.0"
+    }
+  },
+
+  "content_scripts": [
+    {
+      "matches": [ "http://xulforge.com/*", "http://example.com/*" ],
+      "all_frames": true,
+      "js": [ "scripts/flatten.js" ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+iframe {
+  border: solid medium green;
+}
+
+body {
+  background-color: #dddddd;
+}
+
+body.main {
+  background-color: #ffffff;
+}
