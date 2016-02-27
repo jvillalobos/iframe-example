@@ -17,13 +17,12 @@
 "use strict";
 
 if (window != window.top) {
-  // frame.
-  // send message to background script.
+  // frame. Send message to background script.
   browser.runtime.sendMessage(
     { "host" : window.location.hostname,
       "body" : document.body.innerHTML });
 } else {
-  // top window.
+  // top window. Listen to messages from the background script.
   browser.runtime.onMessage.addListener(function(message, sender) {
     if (sender.id == "iframe-example@xulforge.com") {
       let frameId = ((message.host == "xulforge.com") ? "frame1" : "frame2");
@@ -32,8 +31,8 @@ if (window != window.top) {
       if (frame) {
         let container = document.createElement("div");
 
-        // XXX: message.body should be sanitized before injecting!
         container.setAttribute("class", "container");
+        // XXX: message.body should be sanitized before injecting!
         container.innerHTML = message.body;
         // inject content from frame.
         frame.parentNode.insertBefore(container, frame);
