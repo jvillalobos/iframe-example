@@ -15,7 +15,9 @@
 
   "content_scripts": [
     {
-      "matches": [ "http://xulforge.com/*", "http://example.com/*" ],
+      "matches": [
+        "http://xulforge.com/mozilla/iframe-example/*",
+        "http://example.com/*" ],
       "all_frames": true,
       "js": [ "scripts/flatten.js" ]
     }
